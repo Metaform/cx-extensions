@@ -14,6 +14,7 @@
 
 plugins {
     `java-library`
+    id("io.swagger.core.v3.swagger-gradle-plugin")
 }
 
 dependencies {
@@ -29,6 +30,7 @@ dependencies {
     implementation(edcLibs.jwt.core)
 
     implementation(edcLibs.nimbus)
+
 
     implementation(project(":data-plane-proxy:data-plane-proxy-provider-spi"))
 }

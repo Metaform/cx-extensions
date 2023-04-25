@@ -37,7 +37,7 @@ import static org.eclipse.tractusx.edc.dataplane.proxy.provider.api.response.Res
  * Implements the HTTP data proxy API.
  */
 @Path("/" + ProviderGatewayController.GATEWAY_PATH)
-public class ProviderGatewayController {
+public class ProviderGatewayController implements ProviderGatewayApi{
     protected static final String GATEWAY_PATH = "gateway";
 
     private static final String HTTP_DATA = "HttpData";
@@ -69,6 +69,7 @@ public class ProviderGatewayController {
 
     @GET
     @Path("/{paths: .+}")
+    @Override
     public void requestAsset(@Context ContainerRequestContext context, @Suspended AsyncResponse response) {
         var tokens = context.getHeaders().get(HttpHeaders.AUTHORIZATION);
         if (tokens == null || tokens.isEmpty()) {

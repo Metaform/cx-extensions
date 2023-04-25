@@ -32,7 +32,7 @@ import static java.util.UUID.randomUUID;
  * Implements the HTTP proxy API.
  */
 @Path("/aas")
-public class ConsumerAssetRequestController {
+public class ConsumerAssetRequestController implements ConsumerAssetRequestApi {
     private static final String HTTP_DATA = "HttpData";
     private static final String ASYNC_TYPE = "async";
     private static final String BASE_URL = "baseUrl";
@@ -57,6 +57,7 @@ public class ConsumerAssetRequestController {
 
     @POST
     @Path("/request")
+    @Override
     public void requestAsset(AssetRequest request, @Suspended AsyncResponse response) {
         // resolve the EDR and add it to the request
         var edr = resolveEdr(request);
