@@ -117,27 +117,6 @@ public class ProviderGatewayController {
         }
     }
 
-    /**
-     * Handles a request completion, checking for errors. If no errors are present, nothing needs to be done as the response will have already been written to the client.
-     */
-    private void handleCompletion(AsyncResponse response, StreamResult<Void> result, Throwable throwable) {
-        if (result != null && result.failed()) {
-            switch (result.reason()) {
-                case NOT_FOUND:
-                    response.resume(status(NOT_FOUND).type(APPLICATION_JSON).build());
-                    break;
-                case NOT_AUTHORIZED:
-                    response.resume(status(UNAUTHORIZED).type(APPLICATION_JSON).build());
-                    break;
-                case GENERAL_ERROR:
-                    response.resume(status(INTERNAL_SERVER_ERROR).type(APPLICATION_JSON).build());
-                    break;
-            }
-        } else if (throwable != null) {
-            reportError(response, throwable);
-        }
-    }
-
     private DataFlowRequest createRequest(String subPath, GatewayConfiguration configuration) {
         var path = configuration.getProxiedPath() + "/" + subPath;
 
@@ -174,6 +153,27 @@ public class ProviderGatewayController {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Handles a request completion, checking for errors. If no errors are present, nothing needs to be done as the response will have already been written to the client.
+     */
+    private void handleCompletion(AsyncResponse response, StreamResult<Void> result, Throwable throwable) {
+        if (result != null && result.failed()) {
+            switch (result.reason()) {
+                case NOT_FOUND:
+                    response.resume(status(NOT_FOUND).type(APPLICATION_JSON).build());
+                    break;
+                case NOT_AUTHORIZED:
+                    response.resume(status(UNAUTHORIZED).type(APPLICATION_JSON).build());
+                    break;
+                case GENERAL_ERROR:
+                    response.resume(status(INTERNAL_SERVER_ERROR).type(APPLICATION_JSON).build());
+                    break;
+            }
+        } else if (throwable != null) {
+            reportError(response, throwable);
+        }
     }
 
     /**

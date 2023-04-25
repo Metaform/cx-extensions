@@ -89,6 +89,24 @@ public class ConsumerAssetRequestController {
         }
     }
 
+    private EndpointDataReference resolveEdr(AssetRequest request) {
+        if (request.getTransferProcessId() != null) {
+            var edr = edrCache.resolveReference(request.getTransferProcessId());
+            if (edr == null) {
+                throw new BadRequestException("No EDR for transfer process: " + request.getTransferProcessId());
+            }
+            return edr;
+        } else {
+            var resolvedEdrs = edrCache.referencesForAsset(request.getAssetId());
+            if (resolvedEdrs.isEmpty()) {
+                throw new BadRequestException("No EDR for asset: " + request.getAssetId());
+            } else if (resolvedEdrs.size() > 1) {
+                throw new PreconditionFailedException("More than one EDR for asset: " + request.getAssetId());
+            }
+            return resolvedEdrs.get(0);
+        }
+    }
+
     /**
      * Handles a request completion, checking for errors. If no errors are present, nothing needs to be done as the response will have already been written to the client.
      */
@@ -107,24 +125,6 @@ public class ConsumerAssetRequestController {
             }
         } else if (throwable != null) {
             reportError(response, throwable);
-        }
-    }
-
-    private EndpointDataReference resolveEdr(AssetRequest request) {
-        if (request.getTransferProcessId() != null) {
-            var edr = edrCache.resolveReference(request.getTransferProcessId());
-            if (edr == null) {
-                throw new BadRequestException("No EDR for transfer process: " + request.getTransferProcessId());
-            }
-            return edr;
-        } else {
-            var resolvedEdrs = edrCache.referencesForAsset(request.getAssetId());
-            if (resolvedEdrs.isEmpty()) {
-                throw new BadRequestException("No EDR for asset: " + request.getAssetId());
-            } else if (resolvedEdrs.size() > 1) {
-                throw new PreconditionFailedException("More than one EDR for asset: " + request.getAssetId());
-            }
-            return resolvedEdrs.get(0);
         }
     }
 
