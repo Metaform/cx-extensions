@@ -35,6 +35,9 @@ public interface EndpointDataReferenceCache {
      */
     void save(EndpointDataReferenceEntry entry, EndpointDataReference edr);
 
+    /**
+     * Deletes stored endpoint reference data associated with the given transfer process.
+     */
     StoreResult<EndpointDataReferenceEntry> deleteByTransferProcessId(String id);
 
 }
