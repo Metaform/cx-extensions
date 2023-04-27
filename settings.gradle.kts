@@ -106,6 +106,7 @@ dependencyResolutionManagement {
 //            library("dpf-oauth2", "org.eclipse.edc", "data-plane-http-oauth2").versionRef("edc")
 //            library("dpf-api", "org.eclipse.edc", "data-plane-api").versionRef("edc")
 
+            library("core-common-junit", "org.eclipse.edc", "junit").versionRef("edc")
             // micrometer and other infra stuff
             library("micrometer-core", "org.eclipse.edc", "micrometer-core").versionRef("edc")
             library("micrometer-jersey", "org.eclipse.edc", "jersey-micrometer").versionRef("edc")
@@ -122,6 +123,7 @@ dependencyResolutionManagement {
             library("rsApi", "jakarta.ws.rs", "jakarta.ws.rs-api").version("3.1.0")
             //nimbus-jwt = { module = "com.nimbusds:nimbus-jose-jwt", version.ref = "nimbus" }
             library("nimbus", "com.nimbusds", "nimbus-jose-jwt").version("9.31")
+            library("restAssured", "io.rest-assured", "rest-assured").version("5.3.0")
 
             bundle(
                 "connector",
@@ -153,3 +155,4 @@ include("data-plane-proxy:data-plane-proxy-consumer-api")
 include("data-plane-proxy:data-plane-proxy-provider-api")
 include("data-plane-proxy:data-plane-proxy-provider-core")
 include("data-plane-proxy:data-plane-proxy-launcher")
+include("data-plane-proxy:data-plane-proxy-e2e")

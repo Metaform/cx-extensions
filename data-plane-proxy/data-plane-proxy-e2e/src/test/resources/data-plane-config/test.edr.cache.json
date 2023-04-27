@@ -1,0 +1,44 @@
+[
+  {
+    "edrEntry": {
+      "assetId": "79f13b89-59a6-4278-8c8e-8540849dbab8",
+      "agreementId": "a62d02a3-eea5-4852-86d4-5482db4dffe8",
+      "transferProcessId": "5355d524-2616-43df-9096-558afffff659"
+    },
+    "edr": {
+      "id": "c470e649-5454-4e4d-b065-782752e5d759",
+      "endpoint": "http://test.com",
+      "authKey": "authentication",
+      "authCode": "eyJhbGciOiJSUzI1NiIsInZlcnNpb24iOnRydWV9.eyJpc3MiOiJ0ZXN0LWNvbm5lY3RvciIsInN1YiI6ImNvbnN1bWVyLWNvbm5lY3RvciIsImF1ZCI6InRlc3QtY29ubmVjdG9yIiwiaWF0IjoxNjgxOTEzNjM2LCJleHAiOjMzNDU5NzQwNzg4LCJjaWQiOiIzMmE2M2E3ZC04MGQ2LTRmMmUtOTBlNi04MGJhZjVmYzJiM2MifQ.QAuotoRxpEqfuzkTcTq2w5Tcyy3Rc3UzUjjvNc_zwgNROGLe-wO9tFET1dJ_I5BttRxkngDS37dS4R6lN5YXaGHgcH2rf_FuVcJUSFqTp_usGAcx6m7pQQwqpNdcYgmq0NJp3xP87EFPHAy4kBxB5bqpmx4J-zrj9U_gerZ2WlRqpu0SdgP0S5v5D1Gm-vYkLqgvsugrAWH3Ti7OjC5UMdj0kDFwro2NpMY8SSNryiVvBEv8hn0KZdhhebIqPdhqbEQZ9d8WKzcgoqQ3DBd4ijzkd3Fz7ADD2gy_Hxn8Hi2LcItuB514TjCxYAncTNqZC_JSFEyuxwcGFVz3LdSXgw",
+      "properties": {}
+    }
+  },
+  {
+    "edrEntry": {
+      "assetId": "9260f395-3d94-4b8b-bdaa-941ead596ce5",
+      "agreementId": "d6f73f25-b0aa-4b62-843f-7cfaba532b5b8",
+      "transferProcessId": "b2859c0a-1a4f-4d10-a3fd-9652d7b3469a"
+    },
+    "edr": {
+      "id": "514a4142-3d2a-4936-97c3-7892961c6a58",
+      "endpoint": "http://test.com",
+      "authKey": "authentication",
+      "authCode": "eyJhbGciOiJSUzI1NiIsInZlcnNpb24iOnRydWV9.eyJpc3MiOiJ0ZXN0LWNvbm5lY3RvciIsInN1YiI6ImNvbnN1bWVyLWNvbm5lY3RvciIsImF1ZCI6InRlc3QtY29ubmVjdG9yIiwiaWF0IjoxNjgxOTEzNjM2LCJleHAiOjMzNDU5NzQwNzg4LCJjaWQiOiIzMmE2M2E3ZC04MGQ2LTRmMmUtOTBlNi04MGJhZjVmYzJiM2MifQ.QAuotoRxpEqfuzkTcTq2w5Tcyy3Rc3UzUjjvNc_zwgNROGLe-wO9tFET1dJ_I5BttRxkngDS37dS4R6lN5YXaGHgcH2rf_FuVcJUSFqTp_usGAcx6m7pQQwqpNdcYgmq0NJp3xP87EFPHAy4kBxB5bqpmx4J-zrj9U_gerZ2WlRqpu0SdgP0S5v5D1Gm-vYkLqgvsugrAWH3Ti7OjC5UMdj0kDFwro2NpMY8SSNryiVvBEv8hn0KZdhhebIqPdhqbEQZ9d8WKzcgoqQ3DBd4ijzkd3Fz7ADD2gy_Hxn8Hi2LcItuB514TjCxYAncTNqZC_JSFEyuxwcGFVz3LdSXgw",
+      "properties": {}
+    }
+  },
+  {
+    "edrEntry": {
+      "assetId": "9260f395-3d94-4b8b-bdaa-941ead596ce5",
+      "agreementId": "7a23333b-03b5-4547-822b-595a54ad6d38",
+      "transferProcessId": "7a23333b-03b5-4547-822b-595a54ad6d38"
+    },
+    "edr": {
+      "id": "3563c5a1-685d-40e5-a380-0b5761523d2d",
+      "endpoint": "http://test.com",
+      "authKey": "authentication",
+      "authCode": "eyJhbGciOiJSUzI1NiIsInZlcnNpb24iOnRydWV9.eyJpc3MiOiJ0ZXN0LWNvbm5lY3RvciIsInN1YiI6ImNvbnN1bWVyLWNvbm5lY3RvciIsImF1ZCI6InRlc3QtY29ubmVjdG9yIiwiaWF0IjoxNjgxOTEzNjM2LCJleHAiOjMzNDU5NzQwNzg4LCJjaWQiOiIzMmE2M2E3ZC04MGQ2LTRmMmUtOTBlNi04MGJhZjVmYzJiM2MifQ.QAuotoRxpEqfuzkTcTq2w5Tcyy3Rc3UzUjjvNc_zwgNROGLe-wO9tFET1dJ_I5BttRxkngDS37dS4R6lN5YXaGHgcH2rf_FuVcJUSFqTp_usGAcx6m7pQQwqpNdcYgmq0NJp3xP87EFPHAy4kBxB5bqpmx4J-zrj9U_gerZ2WlRqpu0SdgP0S5v5D1Gm-vYkLqgvsugrAWH3Ti7OjC5UMdj0kDFwro2NpMY8SSNryiVvBEv8hn0KZdhhebIqPdhqbEQZ9d8WKzcgoqQ3DBd4ijzkd3Fz7ADD2gy_Hxn8Hi2LcItuB514TjCxYAncTNqZC_JSFEyuxwcGFVz3LdSXgw",
+      "properties": {}
+    }
+  }
+]

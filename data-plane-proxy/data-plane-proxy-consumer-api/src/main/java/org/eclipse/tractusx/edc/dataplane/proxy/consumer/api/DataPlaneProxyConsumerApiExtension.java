@@ -12,6 +12,7 @@ import org.eclipse.edc.web.spi.WebService;
 import org.eclipse.edc.web.spi.configuration.WebServiceConfigurer;
 import org.eclipse.edc.web.spi.configuration.WebServiceSettings;
 import org.eclipse.tractusx.edc.dataplane.proxy.consumer.api.asset.ConsumerAssetRequestController;
+import org.eclipse.tractusx.edc.dataplane.proxy.consumer.api.asset.ClientErrorExceptionMapper;
 import org.eclipse.tractusx.edc.edr.spi.EndpointDataReferenceCache;
 
 import java.util.concurrent.ExecutorService;
@@ -29,6 +30,9 @@ public class DataPlaneProxyConsumerApiExtension implements ServiceExtension {
     private static final String CONSUMER_API_ALIAS = "consumer.api";
     private static final String CONSUMER_CONTEXT_PATH = "/proxy";
     private static final String CONSUMER_CONFIG_KEY = "web.http.proxy";
+
+    @Setting(value = "Data plane proxy API consumer port", type = "int")
+    private static final String CONSUMER_PORT = "tx.dpf.consumer.proxy.port";
 
     @Setting(value = "Thread pool size for the consumer data plane proxy gateway", type = "int")
     private static final String THREAD_POOL_SIZE = "tx.dpf.consumer.proxy.thread.pool";
@@ -62,10 +66,12 @@ public class DataPlaneProxyConsumerApiExtension implements ServiceExtension {
 
     @Override
     public void initialize(ServiceExtensionContext context) {
-        configurer.configure(context, webServer, createApiContext());
+        var port = context.getSetting(CONSUMER_PORT, DEFAULT_PROXY_PORT);
+        configurer.configure(context, webServer, createApiContext(port));
 
         executorService = newFixedThreadPool(context.getSetting(THREAD_POOL_SIZE, DEFAULT_THREAD_POOL));
 
+        webService.registerResource(CONSUMER_API_ALIAS, new ClientErrorExceptionMapper());
         webService.registerResource(CONSUMER_API_ALIAS, new ConsumerAssetRequestController(edrCache, dataPlaneManager, executorService, monitor));
     }
 
@@ -76,12 +82,12 @@ public class DataPlaneProxyConsumerApiExtension implements ServiceExtension {
         }
     }
 
-    private WebServiceSettings createApiContext() {
+    private WebServiceSettings createApiContext(int port) {
         return WebServiceSettings.Builder.newInstance()
                 .apiConfigKey(CONSUMER_CONFIG_KEY)
                 .contextAlias(CONSUMER_API_ALIAS)
                 .defaultPath(CONSUMER_CONTEXT_PATH)
-                .defaultPort(DEFAULT_PROXY_PORT)
+                .defaultPort(port)
                 .name(NAME)
                 .build();
     }

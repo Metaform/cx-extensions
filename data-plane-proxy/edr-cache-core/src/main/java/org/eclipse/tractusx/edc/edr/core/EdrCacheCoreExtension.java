@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.eclipse.edc.runtime.metamodel.annotation.Extension;
 import org.eclipse.edc.runtime.metamodel.annotation.Inject;
 import org.eclipse.edc.runtime.metamodel.annotation.Provider;
+import org.eclipse.edc.runtime.metamodel.annotation.Setting;
 import org.eclipse.edc.spi.EdcException;
 import org.eclipse.edc.spi.monitor.Monitor;
 import org.eclipse.edc.spi.system.ServiceExtension;
+import org.eclipse.edc.spi.system.ServiceExtensionContext;
 import org.eclipse.edc.spi.types.TypeManager;
 import org.eclipse.tractusx.edc.edr.core.defaults.InMemoryEndpointDataReferenceCache;
 import org.eclipse.tractusx.edc.edr.core.defaults.PersistentCacheEntry;
@@ -18,7 +20,6 @@ import java.util.List;
 
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
-import static org.eclipse.edc.util.configuration.ConfigurationFunctions.propOrEnv;
 
 /**
  * Registers default services for the EDR cache.
@@ -26,6 +27,9 @@ import static org.eclipse.edc.util.configuration.ConfigurationFunctions.propOrEn
 @Extension(value = EdrCacheCoreExtension.NAME)
 public class EdrCacheCoreExtension implements ServiceExtension {
     static final String NAME = "EDR Cache Core";
+
+    @Setting("File location of an in-memory EDR cache seed file for testing")
+    private static final String CACHE_TEST_SEED_FILE = "tx.edr.cache.memory.file";
 
     private static final TypeReference<List<PersistentCacheEntry>> TYPE_REFERENCE = new TypeReference<>() {
     };
@@ -42,8 +46,8 @@ public class EdrCacheCoreExtension implements ServiceExtension {
     }
 
     @Provider(isDefault = true)
-    public EndpointDataReferenceCache edrCache() {
-        var location = propOrEnv("tx.edr.cache.memory.file", null);
+    public EndpointDataReferenceCache edrCache(ServiceExtensionContext context) {
+        var location = context.getSetting(CACHE_TEST_SEED_FILE, null);
         var cache = new InMemoryEndpointDataReferenceCache();
         if (location != null) {
             var entries = loadSeedFile(location);

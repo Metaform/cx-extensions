@@ -14,21 +14,15 @@
 
 plugins {
     `java-library`
-    id("io.swagger.core.v3.swagger-gradle-plugin")
 }
 
 dependencies {
-
-    implementation(edcLibs.rsApi)
-    implementation(edcLibs.spi.http)
-    implementation(edcLibs.util)
-    implementation(edcLibs.dpf.framework)
-    implementation(edcLibs.api.observability)
-    implementation(edcLibs.dpf.util)
-    implementation(edcLibs.ext.http)
-
-    implementation(project(":data-plane-proxy:edr-cache-spi"))
-
     testImplementation(edcLibs.core.common.junit)
+    testImplementation(edcLibs.restAssured)
+
+    // FIXME document this usage
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
 }
+
+
 
